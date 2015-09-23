@@ -129,7 +129,11 @@ module.exports = function (grunt) {
       },
       data: {
         expand: true, cwd: 'src/', src: 'data/*', dest: 'build/'
+      }, 
+      enhancer: {
+        expand: true, cwd: 'src/', src: 'enhancer/*', dest: 'build/'
       }
+
     },
 
     hash: {
@@ -151,7 +155,18 @@ module.exports = function (grunt) {
         src: ['build/boot.js', 'build/js/*.js', 'build/css/*.css'],
         overwrite: true,
         replacements: [] // see cachebust
+      },
+      enhancer: {
+        src: ['build/enhancer/boot.js'],
+        overwrite: true,
+        replacements: [
+            {
+                from: 'http://localhost:8000/enhancer/enhancer.css',
+                to: s3Cfg.domain + s3Cfg.path + 'enhancer/enhancer.css'
+            }
+        ]
       }
+
     },
 
     s3: {
@@ -159,11 +174,12 @@ module.exports = function (grunt) {
         access: 'public-read',
         bucket: s3Cfg.bucket,
         gzip: true,
-        gzipExclude: ['.jpg', '.gif', '.jpeg', '.png']
+        gzipExclude: ['.jpg', '.gif', '.jpeg', '.png'],
+        Dryrun: true
       },
       base: {
         options: { headers: { CacheControl: 60 } },
-        files: [{ cwd: 'build', src: ['*.*', '**/*.map'], dest: s3Cfg.path }]
+        files: [{ cwd: 'build', src: ['*.*', '**/*.map', 'enhancer/*.*'], dest: s3Cfg.path }]
       },
       assets: {
         options: { headers: { CacheControl: 86400 } },
@@ -211,7 +227,12 @@ module.exports = function (grunt) {
     });
 
     grunt.config.data.replace.main.replacements = repalceFiles;
-    grunt.task.run('replace');
+    
+    if (target && target === 'deploy') {
+        grunt.task.run('replace');
+    } else {
+        grunt.task.run('replace:main');
+    }
   });
 
   require('jit-grunt')(grunt, { s3: 'grunt-aws', replace: 'grunt-text-replace' });
