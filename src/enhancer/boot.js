@@ -13,7 +13,12 @@ define([], function() {
     var CSS_PATH = 'http://localhost:8000/enhancer/enhancer.css';
 
     // FIXME: Need a better way of detecting of in the apps
-    var mode = (typeof guardian === 'object' && guardian.hasOwnProperty('config')) ? 'web' : 'app';
+    var mode = ( document.location.origin === 'file://' ) ? 'app' : 'web';
+
+    if (mode === 'app') {
+        console.log('Inside app. Early exit');
+        return;
+    }
 
     var mobileRegEx = /Mobile|iP(hone|od|ad)|Android|BlackBerry|IEMobile/;
     var isMobile = mobileRegEx.test( navigator.userAgent );
