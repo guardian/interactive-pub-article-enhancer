@@ -2,8 +2,8 @@ var template = require('./html/base.html');
 var header = require('./html/header.html');
 
 var headerData = '';
-headerData += 'Part 1||http://media.guim.co.uk/37ba21e7ca3f590a190a60f25462b797affb216d/0_0_5760_3457||140,500,1000,2000,5760';
-headerData += '\nPart 2||http://media.guim.co.uk/5b129014c70352284e173607aa2eda51c2d1c15e/0_0_5703_3802||140,500,1000,2000,5703'
+headerData += 'Part 1||http://media.guim.co.uk/37ba21e7ca3f590a190a60f25462b797affb216d/0_0_5760_3457||5760,3457||140,500,1000,2000,5760';
+headerData += '\nPart 2||http://media.guim.co.uk/5b129014c70352284e173607aa2eda51c2d1c15e/0_0_5703_3802||5703,3802||140,500,1000,2000,5703'
 	
 function boot(el) {
 
@@ -36,8 +36,12 @@ function parseData(data){
 		var params = d.split('||');
 		chapter.chapter = params[0];
 		chapter.url = params[1];
+		chapter.ratio = {
+			width: Number(params[2].split(',')[0]),
+			height: Number(params[2].split(',')[1])
+		}
 		chapter.sizes = [];
-		params[2].split(',').forEach(function(d){
+		params[3].split(',').forEach(function(d){
 			chapter.sizes.push(Number(d));
 		})
 		parts.push(chapter);
@@ -54,7 +58,7 @@ function createChapterHeader(h2, content){
 	var base = header;
 	var chapter_headline = h2.innerHTML.replace(content.chapter + ': ', '').replace('<strong>', '').replace('</strong>', '');
 
-	var size = getImageSize(content.sizes);
+	var size = getImageSize(content.ratio, content.sizes);
 
 	base = base.replace('{{image}}', content.url + '/' + size + '.jpg')
 				.replace('{{chapter}}', content.chapter)
@@ -70,8 +74,33 @@ function createChapterHeader(h2, content){
 
 }
 
-function getImageSize(sizes){
+function getImageSize(ratio, sizes){
+	console.log('getting size')
+	var w = window.innerWidth;
+	if(w <	660 ){
+		var h = window.innerHeight;
+		var multiplier = ratio.height / ratio.width;
+		for(var s = 0; s < sizes.length; s ++){
+			if( sizes[s] * multiplier > h * .9){
+				return sizes[s];
+			}
+		}
+		return sizes[sizes.length-1];
 
+	} else {
+
+		if( w > 1300){
+			w = 1300;
+		}
+
+		for(var s = 0; s < sizes.length; s ++){
+			console.log(s)
+			if(sizes[s] >= w){
+				return sizes[s];
+			}
+		};
+
+	}
 
 	return sizes[2];
 }
