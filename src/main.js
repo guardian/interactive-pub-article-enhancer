@@ -52,7 +52,7 @@ function createChapterHeader(h2, content){
 
 	var div = document.createElement("div"); 
 	var base = header;
-	var chapter_headline = h2.innerHTML.replace(content.chapter + ': ', '');
+	var chapter_headline = h2.innerHTML.replace(content.chapter + ': ', '').replace('<strong>', '').replace('</strong>', '');
 
 	var size = getImageSize(content.sizes);
 
@@ -63,14 +63,14 @@ function createChapterHeader(h2, content){
 	div.innerHTML = base;
 
 	h2.parentNode.insertBefore(div, h2);
-	var p = h2.nextSibling.innerHTML;
-	h2.nextSibling.innerHTML = '<span class="gv-first-char">' + p.slice(0,1) + '</span>' + p.slice(1, p.length - 1);
+	var p = h2.nextElementSibling.innerHTML;
+	h2.nextElementSibling.innerHTML = '<span class="gv-first-char">' + p.slice(0,1) + '</span>' + p.slice(1, p.length - 1);
 
 	h2.parentNode.removeChild(h2);
 
 }
 
-function getSize(sizes){
+function getImageSize(sizes){
 
 
 	return sizes[2];
