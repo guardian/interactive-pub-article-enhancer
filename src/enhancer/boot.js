@@ -1,4 +1,12 @@
-define([], function() {
+/**
+ * Replace header with video on desktop and photo on mobile.
+ *
+ * Usage:
+ *          Embed enhancer boot.js and use alt feild to specify paths, eg.
+ *          VideoURL;PhotoURL   NOTE the semicolon which is used to split.
+ */
+
+define([], function() {    
     'use strict';
     
     // FIXME: Change to production URL
