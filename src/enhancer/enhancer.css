@@ -1,0 +1,49 @@
+.gv__enhancer__video,
+.gv__enhancer__image {
+    width: 100%;
+    display: block;
+}
+
+.gv__enhancer__mobile.gv__enhancer__container {
+    height: 100vh;
+    background-size: cover;
+    background-position: 50%;
+}
+
+.gv__enhancer__headline {
+    margin: 0;
+    padding: 0;
+}
+
+.gv__enhancer__standfirst {
+    color: #FFF;
+}
+
+.gv__enhancer__container {
+    position: relative;
+}
+
+.gv__enhancer__inner {
+    color: #FFF;
+    position: absolute !important;
+    bottom: 0;
+    padding: 0 0.625rem;
+}
+
+@media (min-width: 30em) {
+    .gv__enhancer__inner {
+        padding: 0 1.25rem;
+    }
+
+}
+@media (min-width: 41.25em) {
+    
+    .gv__enhancer__inner {
+        padding: 0;
+        left: 50%;
+        -ms-transform: translateX(-50%);
+        -webkit-transform: translateX(-50%);
+        transform: translateX(-50%);
+    }
+
+}
