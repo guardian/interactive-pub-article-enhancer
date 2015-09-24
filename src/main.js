@@ -75,7 +75,7 @@ function createChapterHeader(h2, content){
 }
 
 function getImageSize(ratio, sizes){
-	console.log('getting size')
+
 	var w = window.innerWidth;
 	if(w <	660 ){
 		var h = window.innerHeight;
