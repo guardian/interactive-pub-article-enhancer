@@ -10,7 +10,9 @@ define([], function() {
     'use strict';
     
     // FIXME: Change to production URL
-    var CSS_PATH = 'http://localhost:8000/enhancer/enhancer.css';
+    //var CSS_PATH = 'http://localhost:8000/enhancer/enhancer.css';
+    var CSS_PATH = 'https://interactive.guim.co.uk/2015/09/pub-article-enhancer-chapters/enhancer/enhancer.css';
+
 
     // FIXME: Need a better way of detecting of in the apps
     var mode = ( document.location.origin === 'file://' ) ? 'app' : 'web';
@@ -110,6 +112,10 @@ define([], function() {
         } else {
             var videoEl = createVideoEl(videoUrl);
             containerEl.appendChild(videoEl);
+
+            var band = document.createElement('div');
+            band.className = 'gv__banding';
+            containerEl.appendChild(band);
         }
         
         containerEl.appendChild(innerEl);
