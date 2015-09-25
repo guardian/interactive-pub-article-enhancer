@@ -32,3 +32,12 @@
 .gv-button:focus {
 	outline:0;
 }
+
+@media(min-width:480px){
+	.gv-button {
+		height: 50px;
+	    width: 50px;
+	    line-height: 58px;
+	    bottom: 50%;
+	}
+}
