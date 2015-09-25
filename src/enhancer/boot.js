@@ -17,10 +17,6 @@ define([], function() {
     // FIXME: Need a better way of detecting of in the apps
     var mode = ( document.location.origin === 'file://' ) ? 'app' : 'web';
 
-    if (mode === 'app') {
-        console.log('Inside app. Early exit');
-        return;
-    }
 
     var mobileRegEx = /Mobile|iP(hone|od|ad)|Android|BlackBerry|IEMobile/;
     var isMobile = mobileRegEx.test( navigator.userAgent );
@@ -93,17 +89,25 @@ define([], function() {
         var headerEl = document.querySelector(config.selectors[mode].header);
 
         var innerEl = document.createElement('div');
-        innerEl.setAttribute('class', 'gv__enhancer__inner fc-container__inner media-primary media-primary--showcase');
+        innerEl.setAttribute('class', 'gv__enhancer__inner');
+
+        var band_h = document.createElement('div');
+        band_h.className = 'gv__bandh';
+        innerEl.appendChild(band_h);
 
         var introHeaderEl = document.createElement('h1');
         introHeaderEl.className = 'gv__enhancer__headline content__headline';
         introHeaderEl.innerHTML = headlineEl.textContent;
-        innerEl.appendChild(introHeaderEl);
+        band_h.appendChild(introHeaderEl);
+
+        var band_s = document.createElement('div');
+        band_s.className = 'gv__bands';
+        innerEl.appendChild(band_s);
 
         var standEl = document.createElement('p');
         standEl.className = 'gv__enhancer__standfirst content__standfirst';
         standEl.innerHTML = standfirstEl.textContent;
-        innerEl.appendChild(standEl);
+        band_s.appendChild(standEl);
 
 
         if (isMobile) {

@@ -5,18 +5,22 @@
 }
 
 .gv__enhancer__mobile.gv__enhancer__container {
-    height: 75vh;
+    height: 80vh;
     background-size: cover;
-    background-position: left;
+    background-position: center;
 }
 
 .gv__enhancer__headline {
     margin: 0;
     padding: 0;
+    font-weight: 100;
+    font-size: 36px;
+    line-height: 1;
 }
 
 .gv__enhancer__standfirst {
     color: #FFF;
+    padding-top: 10px;
 }
 
 .gv__enhancer__container {
@@ -25,34 +29,46 @@
 
 .gv__enhancer__inner {
     color: #FFF;
-    position: absolute !important;
+    position: absolute;
     
-    padding: 0 0.625rem;
+    
+    top: 0;
+    width: 100%;
+
+    background: rgba(0,0,0,.85);
 }
 
-@media (max-width: 480px) {
-    .gv__enhancer__inner {
-        top: 0;
-        padding-top: 20px;
-        background: rgba(0,0,0,.85);
-    }
-
-
-    .gv__enhancer__headline {
-        font-size: 36px;
-        line-height: 1;
-    }
-
+.gv__bandh, .gv__bands {
+    width: 100%;
+    background: rgba(0,0,0,.25);
+    padding: 10px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
+.gv__bands {
+    background: rgba(0,0,0,.75);
+}
 
 @media (min-width: 480px) {
+      .gv__enhancer__headline {
+            font-size: 48px;
+      }
+
+      .gv__enhancer__mobile.gv__enhancer__container {
+            height: 70vh;
+        }
+
+}
+
+
+@media (min-width: 660px) {
     .gv__enhancer__inner {
-        bottom: 0;
+
         width: 100%;
         background: rgba(0,0,0,.85);
         padding-bottom: 10px;
-        padding-left: 20px;
     }
 
 
@@ -61,14 +77,20 @@
         line-height: 1;
     }
 
+    .gv__bandh{
+        padding: 20px 20px 30px 20px;
+    } 
+
+    .gv__bands {
+        padding: 0 20px 20px 20px;
+    }
+
 }
 
 
 @media(min-width:1140px){
     .gv__enhancer__inner {
-        padding: 0 1.25rem;
-        padding-left: 160px;
-        bottom: 0;
+
         background: none;
     }
 
@@ -87,12 +109,15 @@
         z-index: -1;
     }
 
+    .gv__bandh, .gv__bands {
+        padding-left: 180px;
+    }
+
 }
 
 @media(min-width:1300px){
     
     .gv__enhancer__inner {
-        padding: 0 0 0 520px;
         left: 50%;
         -ms-transform: translateX(-50%);
         -webkit-transform: translateX(-50%);
@@ -104,4 +129,12 @@
         line-height: 1;
     }
 
+    .gv__bandh, .gv__bands {
+        padding-left: 260px;
+    }
+
 }
+
+
+
+
