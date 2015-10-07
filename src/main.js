@@ -1,15 +1,97 @@
 var template = require('./html/base.html');
 var header = require('./html/header.html');
 
-var headerData = '';
-headerData += 'Part 1||http://media.guim.co.uk/37ba21e7ca3f590a190a60f25462b797affb216d/0_0_5760_3457||5760,3457||140,500,1000,2000,5760';
-headerData += '\nPart 2||http://media.guim.co.uk/5b129014c70352284e173607aa2eda51c2d1c15e/0_0_5703_3802||5703,3802||140,500,1000,2000,5703'
 	
+var chapters = [
+	{
+		chapter: 'Part 2',
+		url: 'http://media.guim.co.uk/9100a7cc1f11b84b250067559800860e715efe7b/0_14_5760_3457',
+		ratio: {
+			width: 5760,
+			height: 3457
+		},
+		sizes: [140,500,1000,2000,5760]
+	},
+	{
+		chapter: 'Part 3',
+		url: 'http://media.guim.co.uk/5b129014c70352284e173607aa2eda51c2d1c15e/0_288_5703_3423',
+		ratio: {
+			width: 5703,
+			height: 3423
+		},
+		sizes: [140,500,1000,2000,5703]
+	},
+	{
+		chapter: 'Part 4',
+		url: 'http://media.guim.co.uk/7575b16065c13516a52f9e671db8c93317a3bf40/0_0_5760_3456',
+		ratio: {
+			width: 5760,
+			height: 3456
+		},
+		sizes: [140,500,1000,2000,5760]
+	},
+
+	{
+		chapter: 'Part 5',
+		url: 'http://media.guim.co.uk/c800177cf99dadb48db0db5b1328563a08e6587d/0_382_5760_3457',
+		ratio: {
+			width: 5760,
+			height: 3457
+		},
+		sizes: [140,500,1000,2000,5760]
+	},
+
+	{
+		chapter: 'Part 6',
+		url: 'http://media.guim.co.uk/75b129b1e2a735460df2cfe945cb9f313e31d2fb/0_382_5760_3457',
+		ratio: {
+			width: 5760,
+			height: 3457
+		},
+		sizes: [140,500,1000,2000,5760]
+	},
+
+	
+
+	{
+		chapter: 'Part 7',
+		url: 'http://media.guim.co.uk/0c0c1dd492435d6566752919fbc92153daac15f3/0_382_5760_3457',
+		ratio: {
+			width: 5760,
+			height: 3457
+		},
+		sizes: [140,500,1000,2000,5760]
+	},
+	{
+		chapter: 'Part 8',
+		url: 'http://media.guim.co.uk/60f6d9cde5ac2c427102440abcde43987a90e4c2/0_88_5724_3435',
+		ratio: {
+			width: 5724,
+			height: 3435
+		},
+		sizes: [140,500,1000,2000,5724]
+	},
+
+	
+
+]
+
+
 function boot(el) {
 
-	var headers = document.querySelectorAll('h2');
+	//replace drop caps
 
-	var chapters = parseData(headerData);
+	var wrappers = document.querySelectorAll('.drop-cap');
+	for(var i = 0; i < wrappers.length; i ++){
+		wrappers[i].className = 'gv-first-char-wrap';
+	}
+	var caps = document.querySelectorAll('.drop-cap__inner');
+	for(var c = 0; c < caps.length; c ++){
+		caps[c].className = 'gv-first-char';
+	}
+
+	//update headers
+	var headers = document.querySelectorAll('h2');
 
 	for(var h = 0; h < headers.length; h ++){
 		//loop through each header
@@ -25,36 +107,13 @@ function boot(el) {
 		}
 	}
 
+
+
 	initAdvancer(el);
 }
 
-function parseData(data){
-	var parts = []
-
-	lines = data.split('\n');
-	lines.forEach(function(d){
-		var chapter = {};
-
-		var params = d.split('||');
-		chapter.chapter = params[0];
-		chapter.url = params[1];
-		chapter.ratio = {
-			width: Number(params[2].split(',')[0]),
-			height: Number(params[2].split(',')[1])
-		}
-		chapter.sizes = [];
-		params[3].split(',').forEach(function(d){
-			chapter.sizes.push(Number(d));
-		})
-		parts.push(chapter);
-
-	});
-
-	return parts;
-}
-
 function createChapterHeader(h2, content){
-	console.log(h2, content)
+	//console.log(h2, content)
 
 	var div = document.createElement("div"); 
 	var base = header;
@@ -69,8 +128,14 @@ function createChapterHeader(h2, content){
 	div.innerHTML = base;
 
 	h2.parentNode.insertBefore(div, h2);
+	//add rule
+	var r = document.createElement("div");
+	r.className = 'gv-drop-cap-rule'
+	h2.parentNode.insertBefore(r, h2);
+
+	//edit html
 	var p = h2.nextElementSibling.innerHTML;
-	h2.nextElementSibling.innerHTML = '<span class="gv-first-char">' + p.slice(0,1) + '</span>' + p.slice(1, p.length - 1);
+	h2.nextElementSibling.innerHTML = '<span class="gv-first-char-wrap"><span class="gv-first-char">' + p.slice(0,1) + '</span></span>' + p.slice(1, p.length - 1);
 
 	h2.parentNode.removeChild(h2);
 
@@ -96,7 +161,7 @@ function getImageSize(ratio, sizes){
 		}
 
 		for(var s = 0; s < sizes.length; s ++){
-			console.log(s)
+			//console.log(s)
 			if(sizes[s] >= w){
 				return sizes[s];
 			}

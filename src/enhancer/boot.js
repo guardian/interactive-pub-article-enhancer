@@ -80,7 +80,7 @@ define([], function() {
         body.classList.add('has-feature-showcase-element');
 
         var containerEl = document.createElement('div');
-        containerEl.setAttribute('class', 'gv__enhancer__container media-primary media-content media-primary--showcase');
+        containerEl.setAttribute('class', 'gv__enhancer__container');
 
 
 
@@ -91,23 +91,28 @@ define([], function() {
         var innerEl = document.createElement('div');
         innerEl.setAttribute('class', 'gv__enhancer__inner');
 
+        var band_wrapper = document.createElement('div');
+        band_wrapper.className = 'gv__bandh__wrapper';
+        innerEl.appendChild(band_wrapper);
+
+
         var band_h = document.createElement('div');
         band_h.className = 'gv__bandh';
-        innerEl.appendChild(band_h);
+        band_wrapper.appendChild(band_h);
 
         var introHeaderEl = document.createElement('h1');
         introHeaderEl.className = 'gv__enhancer__headline content__headline';
         introHeaderEl.innerHTML = headlineEl.textContent;
         band_h.appendChild(introHeaderEl);
 
-        var band_s = document.createElement('div');
-        band_s.className = 'gv__bands';
-        innerEl.appendChild(band_s);
+        // var band_s = document.createElement('div');
+        // band_s.className = 'gv__bands';
+        // innerEl.appendChild(band_s);
 
         var standEl = document.createElement('p');
         standEl.className = 'gv__enhancer__standfirst content__standfirst';
         standEl.innerHTML = standfirstEl.textContent;
-        band_s.appendChild(standEl);
+        band_h.appendChild(standEl);
 
 
         if (isMobile) {
@@ -115,7 +120,10 @@ define([], function() {
             containerEl.className += ' gv__enhancer__mobile';
         } else {
             var videoEl = createVideoEl(videoUrl);
-            containerEl.appendChild(videoEl);
+            var videoElContainer = document.createElement('div');
+            videoElContainer.className = 'gv__video_container';
+            videoElContainer.appendChild(videoEl);
+            containerEl.appendChild(videoElContainer);
 
             var band = document.createElement('div');
             band.className = 'gv__banding';

@@ -13,6 +13,7 @@
 	h3 {
 		@include fs-header(2);
 		margin: 0;
+		color: colour('features-support-3');
 	}
 }
 
@@ -20,13 +21,30 @@
 	text-shadow: 0 0 20px rgba(0,0,0,0.8);
 }
 
-.gv-first-char {
+.gv-first-char-wrap {
 	float: left;
+	padding-right: 10px;
+	overflow: hidden;
+	position: relative;
+}
+
+.gv-drop-cap-rule {
+
+	width: 140px;
+	height: 2px;
+	background: #e3e3e3;
+	margin-bottom: 20px;
+	margin-top: 40px;
+}
+
+
+.gv-first-char {
+	
     font-size: 80px;
     line-height: 72px;
-    padding-right: 10px;
     font-weight: 200;
     font-family: $f-serif-headline;
+    color: colour('features-support-1');
 }
 
 
@@ -75,9 +93,13 @@ blockquote.quoted .inline-quote {
 
 	}
 
+	.gv-first-char-wrap {
+		height: 90px;
+	}
+
 	.gv-first-char {
 	    font-size: 120px;
-	    line-height: 120px;
+	    line-height: 105px;
 	}
 }
 
