@@ -126,7 +126,7 @@ function createChapterHeader(h2, content){
 	var size = getImageSize(content.ratio, content.sizes);
 
 	base = base.replace('{{image}}', content.url + '/' + size + '.jpg')
-				.replace('{{chapter}}', content.chapter)
+			
 				.replace('{{heading}}', chapter_headline)
 				.replace('{{styles}}', content.styles)
 
