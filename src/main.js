@@ -10,6 +10,7 @@ var chapters = [
 			width: 5760,
 			height: 3457
 		},
+		styles: 'gv-right-center',
 		sizes: [140,500,1000,2000,5760]
 	},
 	{
@@ -19,6 +20,7 @@ var chapters = [
 			width: 5703,
 			height: 3423
 		},
+		styles: '',
 		sizes: [140,500,1000,2000,5703]
 	},
 	{
@@ -28,6 +30,7 @@ var chapters = [
 			width: 5760,
 			height: 3456
 		},
+		styles: '',
 		sizes: [140,500,1000,2000,5760]
 	},
 
@@ -38,6 +41,7 @@ var chapters = [
 			width: 5760,
 			height: 3457
 		},
+		styles: '',
 		sizes: [140,500,1000,2000,5760]
 	},
 
@@ -48,11 +52,9 @@ var chapters = [
 			width: 5760,
 			height: 3457
 		},
+		styles: '',
 		sizes: [140,500,1000,2000,5760]
 	},
-
-	
-
 	{
 		chapter: 'Part 7',
 		url: 'http://media.guim.co.uk/0c0c1dd492435d6566752919fbc92153daac15f3/0_382_5760_3457',
@@ -60,6 +62,7 @@ var chapters = [
 			width: 5760,
 			height: 3457
 		},
+		styles: '',
 		sizes: [140,500,1000,2000,5760]
 	},
 	{
@@ -69,8 +72,9 @@ var chapters = [
 			width: 5724,
 			height: 3435
 		},
+		styles: '',
 		sizes: [140,500,1000,2000,5724]
-	},
+	}
 
 	
 
@@ -124,6 +128,7 @@ function createChapterHeader(h2, content){
 	base = base.replace('{{image}}', content.url + '/' + size + '.jpg')
 				.replace('{{chapter}}', content.chapter)
 				.replace('{{heading}}', chapter_headline)
+				.replace('{{styles}}', content.styles)
 
 	div.innerHTML = base;
 
