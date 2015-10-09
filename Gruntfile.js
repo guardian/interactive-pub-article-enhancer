@@ -1,6 +1,7 @@
 'use strict';
 var webpack = require('webpack');
 var s3Cfg = require('./cfg/s3.json');
+var aws = require('./cfg/aws.json');
 if (s3Cfg.path.charAt(s3Cfg.path.length - 1) !== '/') {
   s3Cfg.path += '/';
 }
@@ -157,6 +158,8 @@ module.exports = function (grunt) {
     s3: {
       options: {
         access: 'public-read',
+        accessKeyId: aws.accessKeyId,
+        secretAccessKey: aws.secretAccessKey,
         bucket: s3Cfg.bucket,
         gzip: true,
         gzipExclude: ['.jpg', '.gif', '.jpeg', '.png']
