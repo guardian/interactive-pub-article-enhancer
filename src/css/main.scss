@@ -7,6 +7,7 @@
 
 @import 'type';
 @import 'pageadvancer';
+@import 'video';
 
 figure.interactive {
 	margin: 0;
@@ -28,7 +29,7 @@ figure.interactive {
 
 .gv-header-container {
 	background: #eee;
-	height: 80vh;
+	height: 100vh;
 	background-size: cover;
 	background-position: center center;
 
@@ -44,6 +45,19 @@ figure.interactive {
 		box-sizing: border-box;
 	}
 
+    h2 {
+        position: relative;
+    }
+
+    .number {
+        color: #f7acbb;
+
+        @include mq(leftCol) {
+            position: absolute;
+            left: -1em;
+        }
+    }
+
 	margin: 20px -10px;
     width: calc( 100% + 20px);
 
@@ -55,7 +69,7 @@ figure.interactive {
 	left: 0;
 	width: 100%;
 	background: rgba(0,0,0,.4);
-	padding: 10px;
+	padding: 6px 10px 20px;
 }
 
 .gv-right-center {

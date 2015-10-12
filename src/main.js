@@ -1,10 +1,10 @@
 var template = require('./html/base.html');
 var header = require('./html/header.html');
-
+var videoHeader = require('./html/video.html');
 	
 var chapters = [
 	{
-		chapter: 'Part 2',
+		chapter: '1',
 		url: 'http://media.guim.co.uk/9100a7cc1f11b84b250067559800860e715efe7b/0_14_5760_3457',
 		ratio: {
 			width: 5760,
@@ -14,7 +14,7 @@ var chapters = [
 		sizes: [140,500,1000,2000,5760]
 	},
 	{
-		chapter: 'Part 3',
+		chapter: '2',
 		url: 'http://media.guim.co.uk/5b129014c70352284e173607aa2eda51c2d1c15e/0_288_5703_3423',
 		ratio: {
 			width: 5703,
@@ -24,7 +24,7 @@ var chapters = [
 		sizes: [140,500,1000,2000,5703]
 	},
 	{
-		chapter: 'Part 4',
+		chapter: '3',
 		url: 'http://media.guim.co.uk/7575b16065c13516a52f9e671db8c93317a3bf40/0_0_5760_3456',
 		ratio: {
 			width: 5760,
@@ -35,7 +35,7 @@ var chapters = [
 	},
 
 	{
-		chapter: 'Part 5',
+		chapter: '4',
 		url: 'http://media.guim.co.uk/c800177cf99dadb48db0db5b1328563a08e6587d/0_382_5760_3457',
 		ratio: {
 			width: 5760,
@@ -46,7 +46,7 @@ var chapters = [
 	},
 
 	{
-		chapter: 'Part 6',
+		chapter: '5',
 		url: 'http://media.guim.co.uk/75b129b1e2a735460df2cfe945cb9f313e31d2fb/0_382_5760_3457',
 		ratio: {
 			width: 5760,
@@ -56,7 +56,7 @@ var chapters = [
 		sizes: [140,500,1000,2000,5760]
 	},
 	{
-		chapter: 'Part 7',
+		chapter: '6',
 		url: 'http://media.guim.co.uk/0c0c1dd492435d6566752919fbc92153daac15f3/0_382_5760_3457',
 		ratio: {
 			width: 5760,
@@ -66,7 +66,7 @@ var chapters = [
 		sizes: [140,500,1000,2000,5760]
 	},
 	{
-		chapter: 'Part 8',
+		chapter: '7',
 		url: 'http://media.guim.co.uk/60f6d9cde5ac2c427102440abcde43987a90e4c2/0_88_5724_3435',
 		ratio: {
 			width: 5724,
@@ -83,6 +83,8 @@ var chapters = [
 
 function boot(el) {
 
+/*
+
 	//replace drop caps
 
 	var wrappers = document.querySelectorAll('.drop-cap');
@@ -93,6 +95,7 @@ function boot(el) {
 	for(var c = 0; c < caps.length; c ++){
 		caps[c].className = 'gv-first-char';
 	}
+*/
 
 	//update headers
 	var headers = document.querySelectorAll('h2');
@@ -111,9 +114,12 @@ function boot(el) {
 		}
 	}
 
-
-
 	initAdvancer(el);
+	insertVideo();
+}
+
+function insertVideo() {
+    document.getElementsByTagName("header")[0].innerHTML = videoHeader + document.getElementsByTagName("header")[0].innerHTML
 }
 
 function createChapterHeader(h2, content){
@@ -121,26 +127,24 @@ function createChapterHeader(h2, content){
 
 	var div = document.createElement("div"); 
 	var base = header;
-	var chapter_headline = h2.innerHTML.replace(content.chapter + ': ', '').replace('<strong>', '').replace('</strong>', '');
+	var chapter_headline = h2.innerHTML.replace(content.chapter + '. ', '').replace('<strong>', '').replace('</strong>', '');
 
 	var size = getImageSize(content.ratio, content.sizes);
 
 	base = base.replace('{{image}}', content.url + '/' + size + '.jpg')
-			
+                .replace('{{chapter}}', content.chapter)
 				.replace('{{heading}}', chapter_headline)
 				.replace('{{styles}}', content.styles)
 
 	div.innerHTML = base;
 
 	h2.parentNode.insertBefore(div, h2);
-	//add rule
-	var r = document.createElement("div");
-	r.className = 'gv-drop-cap-rule'
-	h2.parentNode.insertBefore(r, h2);
 
 	//edit html
 	var p = h2.nextElementSibling.innerHTML;
-	h2.nextElementSibling.innerHTML = '<span class="gv-first-char-wrap"><span class="gv-first-char">' + p.slice(0,1) + '</span></span>' + p.slice(1, p.length - 1);
+	if (p.slice(0,1) !== "<") {
+	    h2.nextElementSibling.innerHTML = '<span class="gv-first-char-wrap"><span class="gv-first-char">' + p.slice(0,1) + '</span></span>' + p.slice(1, p.length - 1);
+	}
 
 	h2.parentNode.removeChild(h2);
 
