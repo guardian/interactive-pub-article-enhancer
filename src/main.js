@@ -15,6 +15,16 @@ var chapters = [
 	},
 	{
 		chapter: '2',
+		url: 'http://media.guim.co.uk/9100a7cc1f11b84b250067559800860e715efe7b/0_14_5760_3457',
+		ratio: {
+			width: 5703,
+			height: 3423
+		},
+		styles: '',
+		sizes: [140,500,1000,2000,5760	]
+	},
+	{
+		chapter: '3',
 		url: 'http://media.guim.co.uk/5b129014c70352284e173607aa2eda51c2d1c15e/0_288_5703_3423',
 		ratio: {
 			width: 5703,
@@ -24,7 +34,7 @@ var chapters = [
 		sizes: [140,500,1000,2000,5703]
 	},
 	{
-		chapter: '3',
+		chapter: '4',
 		url: 'http://media.guim.co.uk/7575b16065c13516a52f9e671db8c93317a3bf40/0_0_5760_3456',
 		ratio: {
 			width: 5760,
@@ -35,7 +45,7 @@ var chapters = [
 	},
 
 	{
-		chapter: '4',
+		chapter: '5',
 		url: 'http://media.guim.co.uk/c800177cf99dadb48db0db5b1328563a08e6587d/0_382_5760_3457',
 		ratio: {
 			width: 5760,
@@ -46,7 +56,7 @@ var chapters = [
 	},
 
 	{
-		chapter: '5',
+		chapter: '6',
 		url: 'http://media.guim.co.uk/75b129b1e2a735460df2cfe945cb9f313e31d2fb/0_382_5760_3457',
 		ratio: {
 			width: 5760,
@@ -56,7 +66,7 @@ var chapters = [
 		sizes: [140,500,1000,2000,5760]
 	},
 	{
-		chapter: '6',
+		chapter: '7',
 		url: 'http://media.guim.co.uk/0c0c1dd492435d6566752919fbc92153daac15f3/0_382_5760_3457',
 		ratio: {
 			width: 5760,
@@ -66,7 +76,7 @@ var chapters = [
 		sizes: [140,500,1000,2000,5760]
 	},
 	{
-		chapter: '7',
+		chapter: '8',
 		url: 'http://media.guim.co.uk/60f6d9cde5ac2c427102440abcde43987a90e4c2/0_88_5724_3435',
 		ratio: {
 			width: 5724,
