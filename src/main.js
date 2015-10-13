@@ -107,6 +107,8 @@ function boot(el) {
 	}
 */
 
+    insertVideo();
+
 	//update headers
 	var headers = document.querySelectorAll('h2');
 
@@ -125,7 +127,6 @@ function boot(el) {
 	}
 
 	initAdvancer(el);
-	insertVideo();
 }
 
 function insertVideo() {
