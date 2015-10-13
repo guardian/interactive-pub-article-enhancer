@@ -153,7 +153,7 @@ function createChapterHeader(h2, content){
 	//edit html
 	var p = h2.nextElementSibling.innerHTML;
 	if (p.slice(0,1) !== "<") {
-	    h2.nextElementSibling.innerHTML = '<span class="gv-first-char-wrap"><span class="gv-first-char">' + p.slice(0,1) + '</span></span>' + p.slice(1, p.length - 1);
+	    h2.nextElementSibling.innerHTML = '<span class="gv-first-char-wrap"><span class="gv-first-char">' + p.slice(0,1) + '</span></span>' + p.slice(1, p.length - 1) + '.';
 	}
 
 	h2.parentNode.removeChild(h2);
